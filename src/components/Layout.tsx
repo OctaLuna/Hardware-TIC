@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import React, { Suspense, useEffect, useLayoutEffect } from 'react';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import Sidebar, { navLinks } from './Sidebar';
 import CustomCursor from './CustomCursor';
 import Preloader from './Preloader';
@@ -7,6 +7,18 @@ import SideTelemetryRails from './SideTelemetryRails';
 import { ArrowRight } from 'lucide-react';
 
 export default function Layout() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+    return () => { window.history.scrollRestoration = previousScrollRestoration; };
+  }, []);
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen flex flex-col relative selection:bg-primary selection:text-white">
       {/* Cinematic Custom Cursor (Desktop) */}
