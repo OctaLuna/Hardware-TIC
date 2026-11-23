@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 720" width="100%" height="100%" style="background-color: #F8F5EE; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+  <defs>
+    <!-- Arrowhead markers -->
+    <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="8" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 0 L 5 10 z" fill="#4B5563" />
+    </marker>
+    <marker id="arrow-right" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563" />
+    </marker>
+    <marker id="arrow-up" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 10 L 10 10 L 5 0 z" fill="#4B5563" />
+    </marker>
+
+    <!-- Filters & Gradients -->
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.12" flood-color="#1E1B4B" />
+    </filter>
+    <filter id="pill-shadow" x="-5%" y="-10%" width="110%" height="130%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08" flood-color="#000" />
+    </filter>
+
+    <linearGradient id="purple-card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#581C87" />
+      <stop offset="50%" stop-color="#4C1D95" />
+      <stop offset="100%" stop-color="#3B0764" />
+    </linearGradient>
+  </defs>
+
+  <!-- Diagram Background Border -->
+  <rect x="15" y="15" width="1230" height="690" rx="12" fill="#FAF7F2" stroke="#E2D9CC" stroke-width="2" />
+  
+  <!-- Diagram Header Bar -->
+  <rect x="15" y="15" width="1230" height="38" rx="12" fill="#EFE8DB" />
+  <rect x="15" y="40" width="1230" height="13" fill="#EFE8DB" />
+  <line x1="15" y1="53" x2="1245" y2="53" stroke="#DDD3C4" stroke-width="1.5" />
+  <text x="35" y="38" font-size="13" font-weight="700" fill="#6B7280" letter-spacing="1.5" font-family="'Oswald', sans-serif">DIAGRAMA IDEF0 / NIVEL A-0 : SISTEMA INTEGRAL DE HARDWARE E INFRAESTRUCTURA</text>
+  <text x="1225" y="38" font-size="13" font-weight="700" fill="#9CA3AF" text-anchor="end" font-family="'Oswald', sans-serif">IATECH CO. • TIRADORES</text>
+
+
+  <!-- ==================== CENTRAL RECTANGLE (PURPLE) ==================== -->
+  <!-- Centered at X=630, width=480 (from X=390 to X=870), height=240 (from Y=250 to Y=490) -->
+  <g filter="url(#card-shadow)">
+    <rect x="390" y="250" width="480" height="240" rx="10" fill="url(#purple-card-grad)" stroke="#2E1065" stroke-width="2.5" />
+    <rect x="396" y="256" width="468" height="228" rx="7" fill="none" stroke="#A855F7" stroke-width="1" stroke-opacity="0.4" />
+  </g>
+
+  <!-- Central Box Content -->
+  <text x="630" y="284" font-size="11" font-weight="800" fill="#F3E8FF" text-anchor="middle" letter-spacing="2">PROCESO CENTRAL</text>
+  <text x="630" y="312" font-size="20" font-weight="800" fill="#FFFFFF" text-anchor="middle" font-family="'Oswald', sans-serif" letter-spacing="0.5">ÁREA DE HARDWARE E</text>
+  <text x="630" y="336" font-size="20" font-weight="800" fill="#FFFFFF" text-anchor="middle" font-family="'Oswald', sans-serif" letter-spacing="0.5">INFRAESTRUCTURA</text>
+  
+  <line x1="470" y1="352" x2="790" y2="352" stroke="#7E22CE" stroke-width="1.5" />
+
+  <text x="630" y="376" font-size="13" font-weight="600" fill="#FDE047" text-anchor="middle" font-style="italic">Verbo de acción:</text>
+  <text x="630" y="398" font-size="13.5" font-weight="500" fill="#E9D5FF" text-anchor="middle">Diseñar, desplegar y mantener la</text>
+  <text x="630" y="418" font-size="13.5" font-weight="500" fill="#E9D5FF" text-anchor="middle">infraestructura física que garantiza la</text>
+  <text x="630" y="438" font-size="13.5" font-weight="500" fill="#E9D5FF" text-anchor="middle">continuidad de los sistemas clínicos.</text>
+
+  <!-- Node Code Box (A-0) -->
+  <rect x="822" y="454" width="38" height="26" rx="4" fill="#3B0764" stroke="#9333EA" stroke-width="1.2" />
+  <text x="841" y="472" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" font-family="'Oswald', sans-serif">A-0</text>
+
+
+  <!-- ==================== 1. TOP ZONE: CONTROLES (C) ==================== -->
+  <!-- Category Badge -->
+  <g filter="url(#pill-shadow)">
+    <rect x="555" y="58" width="150" height="28" rx="14" fill="#312E81" />
+    <text x="630" y="76" font-size="12" font-weight="800" fill="#EEF2FF" text-anchor="middle" letter-spacing="1.5">CONTROLES (C)</text>
+  </g>
+
+  <!-- Control 1: Políticas de gobernanza (Row 1, X=450) -->
+  <line x1="450" y1="130" x2="450" y2="242" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-down)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="340" y="96" width="220" height="34" rx="6" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1.5" />
+    <text x="450" y="117" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Políticas de gobernanza y seguridad</text>
+  </g>
+
+  <!-- Control 3: Presupuesto OPEX / CAPEX (Row 1, X=690) -->
+  <line x1="690" y1="130" x2="690" y2="242" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-down)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="590" y="96" width="200" height="34" rx="6" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1.5" />
+    <text x="690" y="117" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Presupuesto OPEX / CAPEX</text>
+  </g>
+
+  <!-- Control 2: Normativas de salud (Row 2, X=570) -->
+  <line x1="570" y1="198" x2="570" y2="242" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-down)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="465" y="164" width="210" height="34" rx="6" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1.5" />
+    <text x="570" y="185" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Normativas de salud (ISO, CE, FDA)</text>
+  </g>
+
+  <!-- Control 4: Estrategia y objetivos IATECH Co. (Row 2, X=810) -->
+  <line x1="810" y1="198" x2="810" y2="242" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-down)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="705" y="164" width="210" height="34" rx="6" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1.5" />
+    <text x="810" y="185" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Estrategia y objetivos IATECH Co.</text>
+  </g>
+
+
+  <!-- ==================== 2. LEFT ZONE: ENTRADAS (I) ==================== -->
+  <!-- Category Badge -->
+  <g filter="url(#pill-shadow)">
+    <rect x="110" y="205" width="140" height="28" rx="14" fill="#C1522A" />
+    <text x="180" y="223" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">ENTRADAS (I)</text>
+  </g>
+
+  <!-- Input 1: Requerimientos de infraestructura clínica -->
+  <line x1="315" y1="277" x2="382" y2="277" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="45" y="260" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.5" />
+    <text x="180" y="281" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Requerimientos de infraest. clínica</text>
+  </g>
+
+  <!-- Input 2: Solicitudes de soporte técnico -->
+  <line x1="315" y1="335" x2="382" y2="335" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="45" y="318" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.5" />
+    <text x="180" y="339" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Solicitudes de soporte técnico</text>
+  </g>
+
+  <!-- Input 3: Datos de inventario de equipos -->
+  <line x1="315" y1="393" x2="382" y2="393" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="45" y="376" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.5" />
+    <text x="180" y="397" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Datos de inventario de equipos</text>
+  </g>
+
+  <!-- Input 4: Especificaciones de proveedores -->
+  <line x1="315" y1="451" x2="382" y2="451" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="45" y="434" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.5" />
+    <text x="180" y="455" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Especificaciones de proveedores y HW</text>
+  </g>
+
+
+  <!-- ==================== 3. RIGHT ZONE: SALIDAS (O) ==================== -->
+  <!-- Category Badge -->
+  <g filter="url(#pill-shadow)">
+    <rect x="1010" y="205" width="140" height="28" rx="14" fill="#065F46" />
+    <text x="1080" y="223" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.5">SALIDAS (O)</text>
+  </g>
+
+  <!-- Output 1: Alta disponibilidad 99.9% -->
+  <line x1="870" y1="277" x2="937" y2="277" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="945" y="260" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="1.5" />
+    <text x="1080" y="281" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Infraestructura alta disponibilidad (99.9%)</text>
+  </g>
+
+  <!-- Output 2: Sistemas clínicos operativos -->
+  <line x1="870" y1="335" x2="937" y2="335" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="945" y="318" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="1.5" />
+    <text x="1080" y="339" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Sistemas clínicos sin interrupciones</text>
+  </g>
+
+  <!-- Output 3: Reportes de mantenimiento y KPIs -->
+  <line x1="870" y1="393" x2="937" y2="393" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="945" y="376" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="1.5" />
+    <text x="1080" y="397" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Reportes de mantenimiento y KPIs</text>
+  </g>
+
+  <!-- Output 4: Incidencias resueltas -->
+  <line x1="870" y1="451" x2="937" y2="451" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-right)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="945" y="434" width="270" height="34" rx="6" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="1.5" />
+    <text x="1080" y="455" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Incidencias resueltas (mesa de ayuda)</text>
+  </g>
+
+
+  <!-- ==================== 4. BOTTOM ZONE: MECANISMOS (M) ==================== -->
+  <!-- Mechanism 2: Infraestructura cloud e híbrida (Row 1, X=570) -->
+  <line x1="570" y1="540" x2="570" y2="498" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-up)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="465" y="540" width="210" height="34" rx="6" fill="#FFFFFF" stroke="#99F6E4" stroke-width="1.5" />
+    <text x="570" y="561" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Infraestructura cloud e híbrida</text>
+  </g>
+
+  <!-- Mechanism 4: Equipos y hardware físico (Row 1, X=810) -->
+  <line x1="810" y1="540" x2="810" y2="498" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-up)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="700" y="540" width="220" height="34" rx="6" fill="#FFFFFF" stroke="#99F6E4" stroke-width="1.5" />
+    <text x="810" y="561" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Equipos y HW físico (servidores, IoT)</text>
+  </g>
+
+  <!-- Mechanism 1: Equipo técnico Tiradores (Row 2, X=450) -->
+  <line x1="450" y1="608" x2="450" y2="498" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-up)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="345" y="608" width="210" height="34" rx="6" fill="#FFFFFF" stroke="#99F6E4" stroke-width="1.5" />
+    <text x="450" y="629" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Equipo técnico (Tiradores)</text>
+  </g>
+
+  <!-- Mechanism 3: Smartsheet monitoreo (Row 2, X=690) -->
+  <line x1="690" y1="608" x2="690" y2="498" stroke="#4B5563" stroke-width="2" marker-end="url(#arrow-up)" />
+  <g filter="url(#pill-shadow)">
+    <rect x="575" y="608" width="230" height="34" rx="6" fill="#FFFFFF" stroke="#99F6E4" stroke-width="1.5" />
+    <text x="690" y="629" font-size="11" font-weight="600" fill="#1F2937" text-anchor="middle">Herramientas de monitoreo (Smartsheet)</text>
+  </g>
+
+  <!-- Category Badge -->
+  <g filter="url(#pill-shadow)">
+    <rect x="555" y="662" width="150" height="28" rx="14" fill="#0F766E" />
+    <text x="630" y="680" font-size="12" font-weight="800" fill="#CCFBF1" text-anchor="middle" letter-spacing="1.5">MECANISMOS (M)</text>
+  </g>
+
+</svg>

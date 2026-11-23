@@ -1,0 +1,315 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 480" width="100%" height="100%" style="background-color: #EDE8DE; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+  <defs>
+    <!-- Pattern background with subtle dots -->
+    <pattern id="dot-grid" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#C5BCAD" opacity="0.6" />
+    </pattern>
+
+    <!-- Markers for arrows -->
+    <marker id="bpmn-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#D97706" />
+    </marker>
+    <marker id="bpmn-arrow-dark" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#B45309" />
+    </marker>
+
+    <!-- Shadows -->
+    <filter id="main-shadow" x="-2%" y="-2%" width="104%" height="106%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.08" flood-color="#000" />
+    </filter>
+    <filter id="task-shadow" x="-5%" y="-10%" width="110%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-opacity="0.06" flood-color="#78350F" />
+    </filter>
+  </defs>
+
+  <!-- Dot grid canvas background -->
+  <rect x="0" y="0" width="1020" height="480" fill="url(#dot-grid)" />
+
+  <!-- Main BPMN White Card Container -->
+  <g filter="url(#main-shadow)">
+    <rect x="15" y="12" width="990" height="456" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1.2" />
+  </g>
+
+  <!-- Card Title -->
+  <text x="510" y="44" font-size="20" font-weight="800" fill="#111827" text-anchor="middle" font-family="'Oswald', sans-serif" letter-spacing="0.5">
+    Gestión de Solicitud de Infraestructura Tecnológica
+  </text>
+
+  <!-- BPMN Outer Pool Border -->
+  <rect x="35" y="64" width="945" height="392" rx="4" fill="none" stroke="#D97706" stroke-width="1.2" />
+
+  <!-- ==================== VERTICAL COLUMNS ON THE LEFT ==================== -->
+  <!-- Column 1 Divider: separates vertical pool labels (X: 35 to 75, width 40) -->
+  <line x1="75" y1="64" x2="75" y2="456" stroke="#D97706" stroke-width="1.2" />
+
+  <!-- Column 2 Divider: starts at Lane 2 (Y=128) and goes down to bottom (Y=456) at X=235 -->
+  <!-- Note: Lane 1 has no Column 2 divider, exactly as in the user's reference image -->
+  <line x1="235" y1="128" x2="235" y2="456" stroke="#D97706" stroke-width="1.2" />
+
+  <!-- Horizontal Lane Dividers across the entire pool -->
+  <!-- Lane 1 / 2 divider: Y = 128 -->
+  <line x1="35" y1="128" x2="980" y2="128" stroke="#FBBF24" stroke-width="1" />
+
+  <!-- Lane 2 / 3 divider: Y = 194 -->
+  <line x1="35" y1="194" x2="980" y2="194" stroke="#FBBF24" stroke-width="1" />
+
+  <!-- Lane 3 / 4 divider: Y = 260 -->
+  <line x1="75" y1="260" x2="980" y2="260" stroke="#FBBF24" stroke-width="1" />
+
+  <!-- Lane 4 / 5 divider: Y = 326 -->
+  <line x1="35" y1="326" x2="980" y2="326" stroke="#FBBF24" stroke-width="1" />
+
+  <!-- Lane 5 / 6 divider: Y = 392 -->
+  <line x1="75" y1="392" x2="980" y2="392" stroke="#FBBF24" stroke-width="1" />
+
+
+  <!-- ==================== COLUMN 1: VERTICAL LABELS (X: 35 to 75, Center = 55) ==================== -->
+  <!-- 1. Cliente Interno (in Lane 1, Y=64 to 128, Height = 64, Center Y = 96) -->
+  <g transform="translate(55, 96) rotate(-90)">
+    <text x="0" y="-3" font-size="7.5" font-weight="800" fill="#111827" text-anchor="middle" letter-spacing="0.5">CLIENTE INTERNO</text>
+    <text x="0" y="7" font-size="6.5" font-weight="600" fill="#6B7280" text-anchor="middle">(Hospital / Equipo Médico)</text>
+  </g>
+
+  <!-- 2. Dirección de Tecnología (spans Lanes 3 & 4, Y=194 to 326, Height = 132, Center Y = 260) -->
+  <g transform="translate(55, 260) rotate(-90)">
+    <text x="0" y="-3" font-size="8.5" font-weight="800" fill="#111827" text-anchor="middle" letter-spacing="0.8">DIRECCIÓN DE</text>
+    <text x="0" y="7" font-size="8.5" font-weight="800" fill="#111827" text-anchor="middle" letter-spacing="0.8">TECNOLOGÍA</text>
+  </g>
+
+  <!-- 3. Aseguramiento de Calidad y Recursos (spans Lanes 5 & 6, Y=326 to 456, Height = 130, Center Y = 391) -->
+  <g transform="translate(55, 391) rotate(-90)">
+    <text x="0" y="-3" font-size="8" font-weight="800" fill="#111827" text-anchor="middle" letter-spacing="0.8">ASEGURAMIENTO DE</text>
+    <text x="0" y="7" font-size="8" font-weight="800" fill="#111827" text-anchor="middle" letter-spacing="0.8">CALIDAD Y RECURSOS</text>
+  </g>
+
+
+  <!-- ==================== COLUMN 2: HORIZONTAL LANE TITLES (X: 75 to 235) ==================== -->
+  <!-- Lane 2: Líder de Hardware (Y=128 to 194, Center = 161) -->
+  <text x="86" y="157" font-size="9" font-weight="800" fill="#111827">LÍDER DE HARDWARE</text>
+  <text x="86" y="169" font-size="7.5" font-weight="500" fill="#6B7280">(Octavio Luna)</text>
+
+  <!-- Lane 3: Dirección de Tecnología y Presupuesto (Y=194 to 260, Center = 227) -->
+  <text x="86" y="217" font-size="8.5" font-weight="800" fill="#111827">DIRECCIÓN DE TECNOLOGÍA</text>
+  <text x="86" y="228" font-size="8.5" font-weight="800" fill="#111827">Y PRESUPUESTO</text>
+  <text x="86" y="239" font-size="7.5" font-weight="500" fill="#6B7280">(Leandro Colque)</text>
+
+  <!-- Lane 4: Gestión de Infraestructura Global (Y=260 to 326, Center = 293) -->
+  <text x="86" y="284" font-size="8.5" font-weight="800" fill="#111827">GESTIÓN DE</text>
+  <text x="86" y="295" font-size="8.5" font-weight="800" fill="#111827">INFRAESTRUCTURA GLOBAL</text>
+  <text x="86" y="306" font-size="7.5" font-weight="500" fill="#6B7280">(Einar Guillén)</text>
+
+  <!-- Lane 5: Aseguramiento de Calidad y Recursos (Y=326 to 392, Center = 359) -->
+  <text x="86" y="350" font-size="8.5" font-weight="800" fill="#111827">ASEGURAMIENTO DE</text>
+  <text x="86" y="361" font-size="8.5" font-weight="800" fill="#111827">CALIDAD Y RECURSOS</text>
+  <text x="86" y="372" font-size="7.5" font-weight="500" fill="#6B7280">(Huascar Duran)</text>
+
+  <!-- Lane 6: Operaciones de Soporte y Entorno de Trabajo (Y=392 to 456, Center = 424) -->
+  <text x="86" y="416" font-size="8.5" font-weight="800" fill="#111827">OPERACIONES DE SOPORTE</text>
+  <text x="86" y="427" font-size="8.5" font-weight="800" fill="#111827">Y ENTORNO DE TRABAJO</text>
+  <text x="86" y="438" font-size="7.5" font-weight="500" fill="#6B7280">(Leonardo Ibarra)</text>
+
+
+  <!-- ==================== BPMN FLOW & ACTIVITIES ==================== -->
+
+  <!-- START EVENT (Lane 1, X=130, Y=96) -->
+  <circle cx="130" cy="96" r="12" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+  <line x1="142" y1="96" x2="165" y2="96" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 1 (Lane 1): Enviar solicitud (X: 165 to 275, Y: 76 to 116) -->
+  <g filter="url(#task-shadow)">
+    <rect x="165" y="76" width="110" height="40" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="173" y="99" font-size="11">📄</text>
+    <text x="190" y="90" font-size="7" font-weight="600" fill="#1F2937">Enviar solicitud de</text>
+    <text x="190" y="99" font-size="7" font-weight="600" fill="#1F2937">infraestructura o</text>
+    <text x="190" y="108" font-size="7" font-weight="600" fill="#1F2937">soporte técnico</text>
+  </g>
+
+  <!-- Arrow Task 1 -> Task 2 (Baja desde el fondo de Task 1 en X=220, dobla a la derecha en Y=161 y entra a Task 2) -->
+  <path d="M 220 116 L 220 161 L 248 161" fill="none" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 2 (Lane 2): Evaluar viabilidad (X: 250 to 345, Y: 142 to 180) -->
+  <g filter="url(#task-shadow)">
+    <rect x="250" y="142" width="95" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="258" y="165" font-size="11">🔍</text>
+    <text x="275" y="157" font-size="7.5" font-weight="600" fill="#1F2937">Evaluar</text>
+    <text x="275" y="166" font-size="7.5" font-weight="600" fill="#1F2937">viabilidad de</text>
+    <text x="275" y="175" font-size="7.5" font-weight="600" fill="#1F2937">la solicitud</text>
+  </g>
+
+  <!-- Arrow Task 2 -> Gateway 1 -->
+  <line x1="345" y1="161" x2="370" y2="161" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Gateway 1: ¿Es viable? (Diamond center at 382, 161) -->
+  <g transform="translate(382, 161)">
+    <polygon points="0,-12 12,0 0,12 -12,0" fill="#FEF3C7" stroke="#D97706" stroke-width="1.8" />
+    <text x="0" y="3.5" font-size="9" font-weight="bold" fill="#B45309" text-anchor="middle">?</text>
+  </g>
+  <!-- Label ¿Es viable? placed above-right of diamond, exactly as in image -->
+  <text x="400" y="157" font-size="7.5" font-weight="700" fill="#111827">¿Es viable?</text>
+
+  <!-- Gateway 1 -> Rama "No viable" (Dotted arrow: sube verticalmente por X=382 a Y=96, dobla a la izquierda y entra en Task 1) -->
+  <path d="M 382 149 L 382 96 L 277 96" fill="none" stroke="#B45309" stroke-width="1.3" stroke-dasharray="3.5 2.5" marker-end="url(#bpmn-arrow-dark)" />
+  <text x="389" y="118" font-size="7" font-weight="700" fill="#B45309">No viable</text>
+
+  <!-- Gateway 1 -> Rama "Sí" (Solid arrow: baja verticalmente por X=382 hacia Task 3 en Lane 3) -->
+  <line x1="382" y1="173" x2="382" y2="206" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+  <text x="388" y="190" font-size="7" font-weight="700" fill="#047857">Sí</text>
+
+  <!-- Task 3 (Lane 3): Evaluar presupuesto (X: 328 to 438, Y: 208 to 248) -->
+  <g filter="url(#task-shadow)">
+    <rect x="328" y="208" width="110" height="40" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="334" y="232" font-size="11">📊</text>
+    <text x="350" y="222" font-size="7" font-weight="600" fill="#1F2937">Evaluar presupuesto</text>
+    <text x="350" y="231" font-size="7" font-weight="600" fill="#1F2937">y stack tecnológico</text>
+    <text x="350" y="240" font-size="7" font-weight="600" fill="#1F2937">requerido</text>
+  </g>
+
+  <!-- Arrow Task 3 -> Task 4 -->
+  <line x1="438" y1="228" x2="460" y2="228" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 4 (Lane 3): Asignar recursos y prioridad (X: 462 to 562, Y: 209 to 247) -->
+  <g filter="url(#task-shadow)">
+    <rect x="462" y="209" width="100" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="469" y="232" font-size="11">📋</text>
+    <text x="486" y="226" font-size="7" font-weight="600" fill="#1F2937">Asignar recursos</text>
+    <text x="486" y="236" font-size="7" font-weight="600" fill="#1F2937">y prioridad</text>
+  </g>
+
+  <!-- Arrow Task 4 -> Task 5 (Sale del fondo de Task 4 en X=512 y baja recto a Task 5 en Lane 4) -->
+  <line x1="512" y1="247" x2="512" y2="272" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 5 (Lane 4): Adquirir/asignar el equipo (X: 456 to 572, Y: 274 to 312) -->
+  <g filter="url(#task-shadow)">
+    <rect x="456" y="274" width="116" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="463" y="297" font-size="11">🛒</text>
+    <text x="480" y="291" font-size="7" font-weight="600" fill="#1F2937">Adquirir/asignar</text>
+    <text x="480" y="300" font-size="7" font-weight="600" fill="#1F2937">el equipo o</text>
+    <text x="480" y="309" font-size="7" font-weight="600" fill="#1F2937">hardware necesario</text>
+  </g>
+
+  <!-- Arrow Task 5 -> Task 6 -->
+  <line x1="572" y1="293" x2="600" y2="293" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 6 (Lane 4): Instalar y configurar infraestructura (X: 602 to 718, Y: 274 to 312) -->
+  <g filter="url(#task-shadow)">
+    <rect x="602" y="274" width="116" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="609" y="297" font-size="11">🖥️</text>
+    <text x="626" y="291" font-size="7" font-weight="600" fill="#1F2937">Instalar y</text>
+    <text x="626" y="300" font-size="7" font-weight="600" fill="#1F2937">configurar</text>
+    <text x="626" y="309" font-size="7" font-weight="600" fill="#1F2937">infraestructura física</text>
+  </g>
+
+  <!-- Dotted Arrow from Task 6 to Task 10 (Sube desde el techo de Task 6 en X=660 recto hacia el fondo de Task 10) -->
+  <line x1="660" y1="274" x2="660" y2="182" stroke="#B45309" stroke-width="1.3" stroke-dasharray="3.5 2.5" marker-end="url(#bpmn-arrow-dark)" />
+
+  <!-- Solid Arrow Task 6 -> Task 7 (Sale del fondo de Task 6 en X=625, baja a Y=322, dobla a la izquierda hasta X=385 y baja a Task 7) -->
+  <path d="M 625 312 L 625 322 L 385 322 L 385 339" fill="none" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 7 (Lane 5): Validar cumplimiento normativas (X: 328 to 448, Y: 341 to 379) -->
+  <g filter="url(#task-shadow)">
+    <rect x="328" y="341" width="120" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="334" y="364" font-size="11">🏅</text>
+    <text x="350" y="356" font-size="6.5" font-weight="600" fill="#1F2937">Validar cumplimiento</text>
+    <text x="350" y="365" font-size="6.5" font-weight="600" fill="#1F2937">de normativas</text>
+    <text x="350" y="374" font-size="6.5" font-weight="600" fill="#1F2937">(ISO, CE, FDA)</text>
+  </g>
+
+  <!-- Arrow Task 7 -> Task 8 -->
+  <line x1="448" y1="360" x2="472" y2="360" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 8 (Lane 5): Medir capacidad y consumo (X: 474 to 578, Y: 341 to 379) -->
+  <g filter="url(#task-shadow)">
+    <rect x="474" y="341" width="104" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="480" y="364" font-size="11">⚡</text>
+    <text x="498" y="356" font-size="7" font-weight="600" fill="#1F2937">Medir capacidad</text>
+    <text x="498" y="366" font-size="7" font-weight="600" fill="#1F2937">y consumo</text>
+    <text x="498" y="375" font-size="7" font-weight="600" fill="#1F2937">energético</text>
+  </g>
+
+  <!-- Arrow Task 8 -> Gateway 2 -->
+  <line x1="578" y1="360" x2="602" y2="360" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Gateway 2: ¿Cumple estándares? (Center at 614, 360) -->
+  <g transform="translate(614, 360)">
+    <polygon points="0,-12 12,0 0,12 -12,0" fill="#FEF3C7" stroke="#D97706" stroke-width="1.8" />
+    <text x="0" y="3.5" font-size="9" font-weight="bold" fill="#B45309" text-anchor="middle">?</text>
+  </g>
+  <!-- Label placed below diamond, exactly as in image -->
+  <text x="614" y="384" font-size="7" font-weight="700" fill="#111827" text-anchor="middle">¿Cumple estándares?</text>
+
+  <!-- Gateway 2 -> Rama "No válido" (Dotted return arrow: sube a Y=334, dobla a la derecha hasta X=685, sube al fondo de Task 6) -->
+  <path d="M 614 348 L 614 334 L 685 334 L 685 314" fill="none" stroke="#B45309" stroke-width="1.3" stroke-dasharray="3.5 2.5" marker-end="url(#bpmn-arrow-dark)" />
+  <text x="670" y="347" font-size="7" font-weight="700" fill="#B45309">No válido</text>
+
+  <!-- Gateway 2 -> Rama "Sí" (Solid arrow: dobla a la derecha en Y=360 hacia X=668, baja a Y=424, entra al lateral izquierdo de Task 9) -->
+  <path d="M 626 360 L 668 360 L 668 424 L 614 424" fill="none" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+  <text x="673" y="378" font-size="7" font-weight="700" fill="#047857">Sí</text>
+
+  <!-- Task 9 (Lane 6): Configurar accesos y capacitar (X: 614 to 726, Y: 405 to 443) -->
+  <g filter="url(#task-shadow)">
+    <rect x="614" y="405" width="112" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="621" y="428" font-size="11">👨‍🏫</text>
+    <text x="638" y="422" font-size="7" font-weight="600" fill="#1F2937">Configurar accesos</text>
+    <text x="638" y="431" font-size="7" font-weight="600" fill="#1F2937">y capacitar al</text>
+    <text x="638" y="440" font-size="7" font-weight="600" fill="#1F2937">usuario final</text>
+  </g>
+
+  <!-- Arrow Task 9 -> Gateway 3 (Sale de la derecha de Task 9 en X=726, corre a X=755, sube verticalmente hasta la base de Gateway 3) -->
+  <path d="M 726 424 L 755 424 L 755 174" fill="none" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 10 (Lane 2): Revisar y aprobar los resultados (X: 615 to 710, Y: 142 to 180) -->
+  <g filter="url(#task-shadow)">
+    <rect x="615" y="142" width="95" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="623" y="165" font-size="11">✅</text>
+    <text x="640" y="157" font-size="7" font-weight="600" fill="#1F2937">Revisar y</text>
+    <text x="640" y="166" font-size="7" font-weight="600" fill="#1F2937">aprobar los</text>
+    <text x="640" y="175" font-size="7" font-weight="600" fill="#1F2937">resultados</text>
+  </g>
+
+  <!-- Arrow Task 10 -> Gateway 3 -->
+  <line x1="710" y1="161" x2="741" y2="161" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Gateway 3: ¿Aprobado? (Center at 755, 161) -->
+  <g transform="translate(755, 161)">
+    <polygon points="0,-12 12,0 0,12 -12,0" fill="#FEF3C7" stroke="#D97706" stroke-width="1.8" />
+    <text x="0" y="3.5" font-size="9" font-weight="bold" fill="#B45309" text-anchor="middle">?</text>
+  </g>
+  <!-- Label placed below diamond, exactly as in image -->
+  <text x="755" y="186" font-size="7" font-weight="700" fill="#111827" text-anchor="middle">¿Aprobado?</text>
+
+  <!-- Dotted Arrow "No aprobado" (Sale de la izquierda de Task 10 en X=615, sube a Y=136, corre a la izquierda por X=588, baja por Lane 3 a Task 5 en Lane 4) -->
+  <path d="M 615 152 L 588 152 L 588 272" fill="none" stroke="#B45309" stroke-width="1.3" stroke-dasharray="3.5 2.5" marker-end="url(#bpmn-arrow-dark)" />
+  <text x="593" y="212" font-size="7" font-weight="700" fill="#B45309">No aprobado</text>
+
+  <!-- Arrow Gateway 3 -> Task 11 (Rama "Sí") -->
+  <line x1="767" y1="161" x2="795" y2="161" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+  <text x="778" y="153" font-size="7" font-weight="700" fill="#047857">Sí</text>
+
+  <!-- Task 11 (Lane 2): Entregar al cliente interno (X: 797 to 897, Y: 142 to 180) -->
+  <g filter="url(#task-shadow)">
+    <rect x="797" y="142" width="100" height="38" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="804" y="165" font-size="11">📦</text>
+    <text x="822" y="158" font-size="7.5" font-weight="600" fill="#1F2937">Entregar al</text>
+    <text x="822" y="168" font-size="7.5" font-weight="600" fill="#1F2937">cliente interno</text>
+  </g>
+
+  <!-- Arrow Task 11 -> Task 12 (Sube recto desde el techo de Task 11 en X=847 hacia el fondo de Task 12) -->
+  <line x1="847" y1="142" x2="847" y2="118" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- Task 12 (Lane 1): Recepción final / infraestructura entregada (X: 797 to 897, Y: 76 to 116) -->
+  <g filter="url(#task-shadow)">
+    <rect x="797" y="76" width="100" height="40" rx="5" fill="#FFFDF7" stroke="#D97706" stroke-width="1.3" />
+    <text x="804" y="99" font-size="11">📄</text>
+    <text x="822" y="90" font-size="7" font-weight="600" fill="#1F2937">Recepción final /</text>
+    <text x="822" y="99" font-size="7" font-weight="600" fill="#1F2937">infraestructura</text>
+    <text x="822" y="108" font-size="7" font-weight="600" fill="#1F2937">entregada</text>
+  </g>
+
+  <!-- Arrow Task 12 -> END EVENT -->
+  <line x1="897" y1="96" x2="925" y2="96" stroke="#D97706" stroke-width="1.4" marker-end="url(#bpmn-arrow)" />
+
+  <!-- END EVENT (Lane 1, X=938, Y=96) -->
+  <circle cx="938" cy="96" r="12" fill="#FEF3C7" stroke="#D97706" stroke-width="3" />
+  <circle cx="938" cy="96" r="8" fill="#D97706" opacity="0.9" />
+
+</svg>
