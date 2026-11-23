@@ -27,7 +27,7 @@ export default function Layout() {
       <Sidebar />
 
       {/* Main Content Area with top offset for floating navbar and architectural side framing */}
-      <main className="relative flex-1 pt-[68px] lg:ml-[276px]">
+      <main className="relative flex-1 pt-[68px] lg:ml-[276px] lg:pt-0">
         <Suspense fallback={<div role="status" className="container-wide mx-auto px-4 py-16 font-mono text-xs uppercase tracking-widest text-foreground-muted">Cargando sección…</div>}>
           <Outlet />
         </Suspense>

@@ -116,15 +116,8 @@ export default function Sidebar() {
   return <>
     <header className="fixed inset-x-0 top-0 z-40 flex h-[68px] items-center justify-between border-b border-neutral-800 bg-[#111111] px-4 text-white lg:hidden">
       <Link to="/" className="font-display text-xl font-bold tracking-wide">IATECH <span className="text-primary">Co.</span></Link>
-      <div className="flex items-center gap-2">
-        <Link to="/contacto" className="rounded-md bg-primary px-3 py-2 text-[11px] font-bold uppercase tracking-wide">Contáctanos</Link>
-        <button type="button" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open} onClick={() => setOpen(!open)} className="rounded-md border border-white/20 p-2 hover:bg-white/10">{open ? <X size={20} /> : <Menu size={20} />}</button>
-      </div>
+      <button type="button" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open} onClick={() => setOpen(!open)} className="rounded-md border border-white/20 p-2 hover:bg-white/10">{open ? <X size={20} /> : <Menu size={20} />}</button>
     </header>
-
-    <div className="fixed left-[276px] right-0 top-0 z-30 hidden h-[68px] items-center justify-end border-b border-stone-300 bg-background px-6 lg:flex">
-      <Link to="/contacto" className="rounded-lg bg-primary px-5 py-2.5 text-xs font-bold uppercase tracking-[0.14em] text-white transition-colors hover:bg-primary-hover">Contáctanos</Link>
-    </div>
 
     <aside className="fixed inset-y-0 left-0 z-40 hidden w-[276px] flex-col border-r border-neutral-800 bg-[#111111] text-white lg:flex">
       <Link to="/" className="flex h-[76px] items-center gap-3 border-b border-white/10 px-6"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white"><Cpu size={20} /></span><span className="font-display text-xl font-bold tracking-wide">IATECH <span className="text-primary">Co.</span></span></Link>
