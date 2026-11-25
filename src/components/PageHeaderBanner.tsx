@@ -21,6 +21,7 @@ export default function PageHeaderBanner({ title, badge, subtitle, category }: P
     const bgGrid = bgGridRef.current;
     if (!banner || !titleEl) return;
 
+    let cleanupPointer: (() => void) | undefined;
     const ctx = gsap.context(() => {
       // Respect reduced-motion
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -76,7 +77,7 @@ export default function PageHeaderBanner({ title, badge, subtitle, category }: P
               gsap.to(char, {
                 x: Math.cos(angle) * power,
                 y: Math.sin(angle) * power,
-                color: '#F4A261',
+                color: '#FF4B18',
                 duration: 0.25,
                 ease: "power2.out"
               });
@@ -84,7 +85,7 @@ export default function PageHeaderBanner({ title, badge, subtitle, category }: P
               gsap.to(char, {
                 x: 0,
                 y: 0,
-                color: '#FFFFFF',
+                color: '#111111',
                 duration: 0.45,
                 ease: "power2.out"
               });
@@ -93,6 +94,7 @@ export default function PageHeaderBanner({ title, badge, subtitle, category }: P
         };
 
         banner.addEventListener('mousemove', onMouseMove);
+        cleanupPointer = () => banner.removeEventListener('mousemove', onMouseMove);
       }
 
       // Scroll parallax scrub
@@ -111,13 +113,13 @@ export default function PageHeaderBanner({ title, badge, subtitle, category }: P
       });
     }, bannerRef);
 
-    return () => ctx.revert();
+    return () => { cleanupPointer?.(); ctx.revert(); };
   }, [title]);
 
   return (
     <header
       ref={bannerRef}
-      className="bg-surface text-foreground-inverse py-20 md:py-24 relative overflow-hidden border-b-8 border-primary"
+      className="editorial-banner bg-background text-foreground py-16 md:py-20 relative overflow-hidden border-b border-ink"
     >
       {/* Technical blueprint grid and watermark */}
       <div
@@ -156,7 +158,7 @@ export default function PageHeaderBanner({ title, badge, subtitle, category }: P
 
         <h1
           ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-7xl font-display tracking-wide text-white mb-4 overflow-hidden py-1"
+        className="editorial-banner-title text-5xl sm:text-6xl md:text-8xl font-display tracking-tight text-surface mb-4 overflow-hidden py-1"
         >
           {title}
         </h1>
@@ -172,7 +174,7 @@ export default function PageHeaderBanner({ title, badge, subtitle, category }: P
       <div
         ref={bottomLineRef}
         aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-primary via-primary-light to-primary origin-left"
+        className="absolute bottom-0 left-0 right-0 h-1 bg-primary origin-left"
         style={{ transform: 'scaleX(1)' }}
       />
     </header>

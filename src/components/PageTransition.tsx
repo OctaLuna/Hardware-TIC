@@ -11,6 +11,12 @@ export const PageTransition: React.FC<{ children: React.ReactNode }> = ({ childr
     // Scroll to top on route change
     window.scrollTo({ top: 0, behavior: 'instant' });
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(curtainRef.current, { scaleY: 0 });
+      gsap.set(contentRef.current, { clearProps: 'opacity,transform' });
+      return;
+    }
+
     // GSAP page reveal animation
     const ctx = gsap.context(() => {
       gsap.fromTo(

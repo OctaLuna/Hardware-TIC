@@ -274,6 +274,7 @@ export default function Organigrama() {
 
             {/* Level 2: Líder de Hardware (Octavio Luna) */}
             <div 
+              id="lider-hardware"
               onClick={() => setSelectedNode({
                 title: "Líder de Hardware e Infraestructura Tecnológica",
                 name: "Octavio Luna",
@@ -318,6 +319,7 @@ export default function Organigrama() {
               
               {/* Node 1: Leandro */}
               <div
+                id="direccion-tecnologia"
                 onClick={() => setSelectedNode({
                   title: "Dirección de Tecnología y Presupuesto",
                   name: "Leandro Colque",
@@ -347,6 +349,7 @@ export default function Organigrama() {
 
               {/* Node 2: Einar */}
               <div
+                id="gestion-infraestructura"
                 onClick={() => setSelectedNode({
                   title: "Gestión de Infraestructura Global",
                   name: "Einar Guillén",
@@ -376,6 +379,7 @@ export default function Organigrama() {
 
               {/* Node 3: Huascar */}
               <div
+                id="aseguramiento-calidad"
                 onClick={() => setSelectedNode({
                   title: "Aseguramiento de Calidad y Recursos",
                   name: "Huascar Duran",
@@ -405,6 +409,7 @@ export default function Organigrama() {
 
               {/* Node 4: Leonardo */}
               <div
+                id="operaciones-soporte"
                 onClick={() => setSelectedNode({
                   title: "Operaciones de Soporte y Entorno de Trabajo",
                   name: "Leonardo Ibarra",

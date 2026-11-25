@@ -98,6 +98,10 @@ export default function Home() {
   // GSAP Smooth Scroll Down Handler
   const handleScrollDown = () => {
     if (statsSectionRef.current) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        statsSectionRef.current.scrollIntoView({ behavior: 'instant', block: 'start' });
+        return;
+      }
       gsap.to(window, {
         scrollTo: { y: statsSectionRef.current, offsetY: 70 },
         duration: 1.1,
@@ -300,7 +304,7 @@ export default function Home() {
 
   return (
     <AnimatedPage>
-      <div ref={heroRef} className="w-full overflow-hidden bg-background">
+      <div ref={heroRef} className="editorial-home w-full overflow-hidden bg-background">
 
         {/* ==================== HERO SECTION (MOTION GRAPHICS ADAPTATIVO) ==================== */}
         <section className="relative min-h-[92vh] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-10 px-4 sm:px-6 md:px-12 bg-background bg-tech-grid overflow-hidden">

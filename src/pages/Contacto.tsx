@@ -16,14 +16,9 @@ import {
   GraduationCap, 
   Building2, 
   ArrowRight, 
-  CheckCircle, 
-  AlertCircle, 
-  ExternalLink, 
+  AlertCircle,
   Activity, 
   Send,
-  User,
-  Shield,
-  Layers
 } from 'lucide-react';
 
 export default function Contacto() {
@@ -35,45 +30,22 @@ export default function Contacto() {
     mensaje: ''
   });
   const [formError, setFormError] = useState<string | null>(null);
-  const [formSuccess, setFormSuccess] = useState<boolean>(false);
-
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (formError) setFormError(null);
   };
 
   const handleFormSubmit = () => {
-    // Validaciones
-    if (!formData.nombre.trim()) {
-      setFormError('Por favor ingresa tu nombre completo.');
-      return;
-    }
-    if (!formData.correo.trim() || !formData.correo.includes('@')) {
-      setFormError('Por favor ingresa un correo electrónico válido.');
-      return;
-    }
-    if (!formData.mensaje.trim()) {
-      setFormError('Por favor escribe un mensaje detallando tu consulta.');
-      return;
-    }
+    if (!generalContactInfo.email) return;
+    if (!formData.nombre.trim()) return setFormError('Por favor ingresa tu nombre completo.');
+    if (!formData.correo.trim() || !formData.correo.includes('@')) return setFormError('Por favor ingresa un correo electrónico válido.');
+    if (!formData.mensaje.trim()) return setFormError('Por favor escribe un mensaje detallando tu consulta.');
 
-    setFormError(null);
-    setFormSuccess(true);
-
-    // Preparar enlace mailto
     const subject = encodeURIComponent(`[${formData.asunto}] Mensaje de ${formData.nombre}`);
     const body = encodeURIComponent(
-      `Nombre: ${formData.nombre}\n` +
-      `Correo de contacto: ${formData.correo}\n` +
-      `Asunto: ${formData.asunto}\n\n` +
-      `Mensaje:\n${formData.mensaje}\n\n` +
-      `--- Enviado desde el portal web de Tiradores (IATECH Co.)`
+      `Nombre: ${formData.nombre}\nCorreo de contacto: ${formData.correo}\nAsunto: ${formData.asunto}\n\nMensaje:\n${formData.mensaje}`
     );
-
-    const mailtoUrl = `mailto:${generalContactInfo.email}?subject=${subject}&body=${body}`;
-    
-    // Abrir cliente de correo
-    window.location.href = mailtoUrl;
+    window.location.href = `mailto:${generalContactInfo.email}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -82,8 +54,8 @@ export default function Contacto() {
         {/* Header Oficial */}
         <PageHeaderBanner
           title="Contacto"
-          badge="Canal Oficial de Comunicación • Tiradores"
-          subtitle="Conoce al equipo Tiradores y escríbenos."
+          badge="Directorio del Equipo • Tiradores"
+          subtitle="Conoce al equipo y consulta los canales personales publicados."
         />
 
         <div className="container-wide mt-16 space-y-24">
@@ -92,17 +64,17 @@ export default function Contacto() {
           <section className="bg-surface text-foreground-inverse p-6 sm:p-8 rounded-2xl border-l-8 border-primary shadow-hard-lg flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center shrink-0 border border-primary/40 mt-1">
-                <Activity size={26} className="animate-pulse" />
+                <Activity size={26} />
               </div>
               <div>
                 <span className="text-primary font-mono text-xs font-bold uppercase tracking-wider block mb-1">
-                  Telemetría Operativa 24/7
+                  Monitoreo de infraestructura
                 </span>
                 <h3 className="text-xl sm:text-2xl font-display text-white">
-                  ¿Incidencia en la infraestructura? Revisa el estado en vivo
+                  ¿Incidencia en la infraestructura? Consulta el monitoreo
                 </h3>
                 <p className="text-sm text-gray-400 mt-1 font-sans">
-                  Monitoreamos servidores, bases de datos y dispositivos médicos en tiempo real con PRTG.
+                  Consulta el acceso PRTG y el esquema de referencia de la infraestructura.
                 </p>
               </div>
             </div>
@@ -157,7 +129,7 @@ export default function Contacto() {
                   <div className="space-y-2 text-xs font-mono text-gray-400 mb-6">
                     <div className="flex items-center gap-2">
                       <Mail size={14} className="text-primary shrink-0" />
-                      <span className="truncate">{generalContactInfo.email}</span>
+                      <span className="truncate">{generalContactInfo.email ?? 'Correo oficial no publicado'}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Clock size={14} className="text-primary shrink-0" />
@@ -166,12 +138,15 @@ export default function Contacto() {
                   </div>
                 </div>
 
-                <a
-                  href={`mailto:${generalContactInfo.email}?subject=Solicitud%20de%20Infraestructura`}
-                  className="btn-primary text-xs py-3 text-center justify-center w-full"
-                >
-                  Contactar Mesa Central
-                </a>
+                {generalContactInfo.email ? (
+                  <a href={`mailto:${generalContactInfo.email}?subject=Solicitud%20de%20Infraestructura`} className="btn-primary text-xs py-3 text-center justify-center w-full">
+                    Contactar Mesa Central
+                  </a>
+                ) : (
+                  <button type="button" disabled aria-disabled="true" className="btn-primary text-xs py-3 text-center justify-center w-full cursor-not-allowed opacity-50" title="Correo oficial no publicado">
+                    Contactar Mesa Central
+                  </button>
+                )}
               </div>
             </div>
           </section>
@@ -241,20 +216,17 @@ export default function Contacto() {
                   </div>
                   <div>
                     <strong className="text-surface block">Correo Electrónico Oficial:</strong>
-                    <a 
-                      href={`mailto:${generalContactInfo.email}`} 
-                      className="text-primary hover:underline font-mono text-xs font-bold"
-                    >
-                      {generalContactInfo.email}
-                    </a>
+                    {generalContactInfo.email ? (
+                      <a href={`mailto:${generalContactInfo.email}`} className="text-primary hover:underline font-mono text-xs font-bold">
+                        {generalContactInfo.email}
+                      </a>
+                    ) : (
+                      <span className="text-foreground-muted">No publicado</span>
+                    )}
                   </div>
                 </div>
               </div>
 
-              <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs text-foreground-muted">
-                <span className="font-bold text-surface block mb-1">Configuración Editable:</span>
-                Los datos de contacto provienen de <code>src/data/contactData.ts</code>. Puedes reemplazarlos fácilmente sin tocar el marcado.
-              </div>
             </div>
 
             {/* 2.3 Formulario de Contacto Funcional */}
@@ -267,23 +239,13 @@ export default function Contacto() {
                   Envíanos un Mensaje
                 </h3>
                 <p className="text-sm text-gray-400 font-sans mt-1">
-                  Completa los campos a continuación para generar una solicitud directa por correo electrónico.
+                  Completa los campos. El envío se habilitará cuando exista un correo oficial de destino.
                 </p>
               </div>
 
-              {formSuccess && (
-                <div className="mb-6 p-4 rounded-xl bg-emerald-950/80 border border-emerald-500 text-emerald-200 text-sm flex items-start gap-3 font-sans">
-                  <CheckCircle size={20} className="text-emerald-400 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="font-bold block">¡Solicitud preparada con éxito!</strong>
-                    Se ha abierto tu cliente de correo con los datos precargados para enviar a <code>{generalContactInfo.email}</code>.
-                  </div>
-                </div>
-              )}
-
               {formError && (
-                <div className="mb-6 p-4 rounded-xl bg-rose-950/80 border border-rose-500 text-rose-200 text-sm flex items-start gap-3 font-sans">
-                  <AlertCircle size={20} className="text-rose-400 shrink-0 mt-0.5" />
+                <div role="alert" className="mb-6 flex items-start gap-3 rounded-xl border border-rose-500 bg-rose-950/80 p-4 text-sm text-rose-200">
+                  <AlertCircle size={20} className="mt-0.5 shrink-0 text-rose-400" />
                   <span>{formError}</span>
                 </div>
               )}
@@ -352,7 +314,10 @@ export default function Contacto() {
                   <button
                     type="button"
                     onClick={handleFormSubmit}
-                    className="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 shadow-hard-orange hover:scale-105 transition-transform"
+                    disabled={!generalContactInfo.email}
+                    aria-disabled={!generalContactInfo.email}
+                    title={!generalContactInfo.email ? 'Correo oficial no publicado' : undefined}
+                    className="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 shadow-hard-orange transition-transform disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <span>Enviar Mensaje</span>
                     <Send size={16} />
@@ -381,8 +346,10 @@ function MemberContactCard({ member }: { member: TeamMemberContact; key?: string
           {member.photoUrl ? (
             <img
               src={member.photoUrl}
-              alt={member.name}
-              className="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-sm"
+              alt={`Foto de ${member.name}`}
+              loading="lazy"
+              className={`h-28 w-24 shrink-0 rounded-xl border-2 border-primary shadow-sm ${member.photoFit === 'contain' ? 'bg-stone-100 object-contain' : 'object-cover'}`}
+              style={{ objectPosition: member.photoPosition ?? 'center' }}
             />
           ) : (
             <div className="w-16 h-16 rounded-full bg-surface text-primary flex items-center justify-center font-display text-2xl font-bold border-2 border-primary shadow-sm shrink-0 group-hover:scale-105 transition-transform">
@@ -409,14 +376,14 @@ function MemberContactCard({ member }: { member: TeamMemberContact; key?: string
           </p>
         )}
 
-        {/* Datos de Contacto (Placeholders visibles) */}
+        {/* Datos de contacto publicados */}
         <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 space-y-2 mb-6 font-mono text-xs">
           <div className="flex items-center justify-between text-foreground-muted">
             <span className="flex items-center gap-2">
               <Mail size={14} className="text-primary" /> Correo:
             </span>
-            <span className="text-surface font-semibold truncate max-w-[170px]" title={member.email}>
-              {member.email}
+            <span className="text-surface font-semibold truncate max-w-[170px]" title={member.email ?? 'No publicado'}>
+              {member.email ?? 'No publicado'}
             </span>
           </div>
           <div className="flex items-center justify-between text-foreground-muted">
@@ -424,30 +391,32 @@ function MemberContactCard({ member }: { member: TeamMemberContact; key?: string
               <Phone size={14} className="text-primary" /> Teléfono:
             </span>
             <span className="text-surface font-semibold">
-              {member.phone}
+              {member.phone ?? 'No publicado'}
             </span>
           </div>
         </div>
 
         {/* Botones Principales de Contacto */}
         <div className="grid grid-cols-2 gap-3 mb-6">
-          <a
-            href={`mailto:${member.email}?subject=Contacto%20con%20${encodeURIComponent(member.name)}`}
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-surface text-white text-xs font-semibold hover:bg-primary transition-colors shadow-sm text-center"
-          >
-            <Mail size={14} />
-            <span>Escribir correo</span>
-          </a>
+          {member.email ? (
+            <a href={`mailto:${member.email}?subject=Contacto%20con%20${encodeURIComponent(member.name)}`} className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-surface text-white text-xs font-semibold hover:bg-primary transition-colors shadow-sm text-center">
+              <Mail size={14} /><span>Escribir correo</span>
+            </a>
+          ) : (
+            <button type="button" disabled aria-disabled="true" title="Correo no publicado" className="inline-flex cursor-not-allowed items-center justify-center gap-1.5 rounded-lg bg-surface px-3 py-2.5 text-center text-xs font-semibold text-white opacity-50 shadow-sm">
+              <Mail size={14} /><span>Escribir correo</span>
+            </button>
+          )}
 
-          <a
-            href={`https://wa.me/${member.whatsapp}?text=${encodeURIComponent(`Hola ${member.name}, te contacto desde el portal Tiradores.`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-500 transition-colors shadow-sm text-center"
-          >
-            <MessageSquare size={14} />
-            <span>WhatsApp</span>
-          </a>
+          {member.whatsapp ? (
+            <a href={`https://wa.me/${member.whatsapp}?text=${encodeURIComponent(`Hola ${member.name}, te contacto desde el portal Tiradores.`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-500 transition-colors shadow-sm text-center">
+              <MessageSquare size={14} /><span>WhatsApp</span>
+            </a>
+          ) : (
+            <button type="button" disabled aria-disabled="true" title="Número no publicado" className="inline-flex cursor-not-allowed items-center justify-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2.5 text-center text-xs font-semibold text-white opacity-50 shadow-sm">
+              <MessageSquare size={14} /><span>WhatsApp</span>
+            </button>
+          )}
         </div>
       </div>
 

@@ -92,7 +92,7 @@ export default function Sidebar() {
   };
 
   const navigation = (
-    <nav aria-label="Navegación principal" className="flex-1 overflow-y-auto px-3 py-5">
+    <nav aria-label="Navegación principal" className="editorial-navigation flex-1 overflow-y-auto px-3 py-5">
       <button type="button" onClick={showSearch} className="mb-5 flex min-h-10 w-full items-center gap-3 rounded-lg border border-white/15 px-3 py-2 text-left text-[13px] text-stone-300 transition-colors hover:border-primary hover:bg-white/10 hover:text-white" aria-haspopup="dialog">
         <Search size={16} className="text-stone-400" /><span className="flex-1">Buscar página</span>
       </button>
@@ -114,23 +114,23 @@ export default function Sidebar() {
   );
 
   return <>
-    <header className="fixed inset-x-0 top-0 z-40 flex h-[68px] items-center justify-between border-b border-neutral-800 bg-[#111111] px-4 text-white lg:hidden">
+    <header className="editorial-mobile-header fixed inset-x-0 top-0 z-40 flex h-[68px] items-center justify-between border-b border-neutral-800 bg-[#111111] px-4 text-white lg:hidden">
       <Link to="/" className="font-display text-xl font-bold tracking-wide">IATECH <span className="text-primary">Co.</span></Link>
       <button type="button" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open} onClick={() => setOpen(!open)} className="rounded-md border border-white/20 p-2 hover:bg-white/10">{open ? <X size={20} /> : <Menu size={20} />}</button>
     </header>
 
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-[276px] flex-col border-r border-neutral-800 bg-[#111111] text-white lg:flex">
+    <aside className="editorial-sidebar fixed inset-y-0 left-0 z-40 hidden w-[276px] flex-col border-r border-neutral-800 bg-[#111111] text-white lg:flex">
       <Link to="/" className="flex h-[76px] items-center gap-3 border-b border-white/10 px-6"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white"><Cpu size={20} /></span><span className="font-display text-xl font-bold tracking-wide">IATECH <span className="text-primary">Co.</span></span></Link>
       {navigation}<div className="border-t border-white/10 p-4"><p className="text-center font-mono text-[9px] uppercase tracking-widest text-stone-500">Hardware & Infraestructura</p></div>
     </aside>
 
     {open && <button type="button" aria-label="Cerrar menú" onClick={() => setOpen(false)} className="fixed inset-0 top-[68px] z-40 bg-black/60 lg:hidden" />}
-    <aside aria-label="Menú móvil" className={`fixed bottom-0 left-0 top-[68px] z-50 flex w-[min(86vw,340px)] flex-col border-r border-neutral-800 bg-[#111111] text-white shadow-2xl transition-transform duration-200 lg:hidden ${open ? 'translate-x-0' : '-translate-x-full'}`}>
+    <aside aria-label="Menú móvil" className={`editorial-drawer fixed bottom-0 left-0 top-[68px] z-50 flex w-[min(86vw,340px)] flex-col border-r border-neutral-800 bg-[#111111] text-white shadow-2xl transition-transform duration-200 lg:hidden ${open ? 'translate-x-0' : '-translate-x-full'}`}>
       {navigation}<div className="border-t border-white/10 p-4"><p className="text-center font-mono text-[9px] uppercase tracking-widest text-stone-500">Hardware & Infraestructura</p></div>
     </aside>
 
     {searchOpen && <div className="fixed inset-0 z-[70] flex items-start justify-center bg-black/65 p-4 pt-[12vh]" onMouseDown={(event) => { if (event.target === event.currentTarget) closeSearch(); }}>
-      <div ref={searchDialogRef} role="dialog" aria-modal="true" aria-labelledby="page-search-title" className="w-full max-w-xl overflow-hidden rounded-2xl border-2 border-surface bg-background shadow-hard-lg">
+      <div ref={searchDialogRef} role="dialog" aria-modal="true" aria-labelledby="page-search-title" className="editorial-search-dialog w-full max-w-xl overflow-hidden rounded-2xl border-2 border-surface bg-background shadow-hard-lg">
         <div className="flex items-center gap-3 border-b border-stone-300 px-4 py-3"><Search size={18} className="shrink-0 text-primary" /><h2 id="page-search-title" className="sr-only">Buscar página</h2>
           <input ref={searchInputRef} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => {
             if (event.key === 'ArrowDown' && searchResults.length) { event.preventDefault(); setActiveResult((index) => (index + 1) % searchResults.length); }

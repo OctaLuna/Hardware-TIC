@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useLayoutEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import Sidebar, { navLinks } from './Sidebar';
 import CustomCursor from './CustomCursor';
@@ -15,9 +15,26 @@ export default function Layout() {
     return () => { window.history.scrollRestoration = previousScrollRestoration; };
   }, []);
 
-  useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, [location.pathname]);
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      return;
+    }
+
+    const targetId = decodeURIComponent(location.hash.slice(1));
+    let frame = 0;
+    let attempts = 0;
+    const scrollToHashTarget = () => {
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ block: 'start', behavior: 'instant' });
+        return;
+      }
+      if (attempts++ < 120) frame = requestAnimationFrame(scrollToHashTarget);
+    };
+    frame = requestAnimationFrame(scrollToHashTarget);
+    return () => cancelAnimationFrame(frame);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen flex flex-col relative selection:bg-primary selection:text-white">
@@ -39,14 +56,14 @@ export default function Layout() {
       <Sidebar />
 
       {/* Main Content Area with top offset for floating navbar and architectural side framing */}
-      <main className="relative flex-1 pt-[68px] lg:ml-[276px] lg:pt-0">
+      <main className="editorial-main relative flex-1 pt-[68px] lg:ml-[244px] lg:pt-0">
         <Suspense fallback={<div role="status" className="container-wide mx-auto px-4 py-16 font-mono text-xs uppercase tracking-widest text-foreground-muted">Cargando sección…</div>}>
           <Outlet />
         </Suspense>
       </main>
 
       {/* Footer - All texts and links preserved identically */}
-      <footer className="relative z-10 border-t border-neutral-800 bg-surface py-16 text-foreground-inverse lg:ml-[276px]">
+      <footer className="relative z-10 border-t border-neutral-800 bg-surface py-16 text-foreground-inverse lg:ml-[244px]">
         <div className="container-wide grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="col-span-1 md:col-span-2">
             <h2 className="text-4xl font-display mb-4">Tiradores</h2>

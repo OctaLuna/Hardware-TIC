@@ -23,6 +23,7 @@ const Presupuesto = lazy(() => import('./pages/Presupuesto'));
 const Contingencia = lazy(() => import('./pages/Contingencia'));
 const Conclusiones = lazy(() => import('./pages/Conclusiones'));
 const Recomendaciones = lazy(() => import('./pages/Recomendaciones'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="contingencia" element={<Contingencia />} />
           <Route path="conclusiones" element={<Conclusiones />} />
           <Route path="recomendaciones" element={<Recomendaciones />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

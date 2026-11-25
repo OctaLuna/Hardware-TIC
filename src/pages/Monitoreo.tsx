@@ -28,9 +28,9 @@ import {
 } from 'lucide-react';
 
 export default function Monitoreo() {
-  const prtgMapUrl = "http://laptop-7td9v3rm/mapshow.htm?id=2001";
+  const prtgMapUrl = import.meta.env.VITE_PRTG_MAP_URL?.trim() || undefined;
   const [iframeError, setIframeError] = useState(false);
-  const [activeViewMode, setActiveViewMode] = useState<'iframe' | 'mockup'>('iframe');
+  const [activeViewMode, setActiveViewMode] = useState<'iframe' | 'mockup'>(prtgMapUrl ? 'iframe' : 'mockup');
 
   return (
     <AnimatedPage>
@@ -58,35 +58,36 @@ export default function Monitoreo() {
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-neutral-800 pb-6">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className={`w-2.5 h-2.5 rounded-full ${prtgMapUrl ? 'bg-emerald-400 animate-pulse' : 'bg-stone-500'}`} />
                     <span className="text-primary font-mono text-xs font-bold uppercase tracking-widest">
-                      PRTG Core Server // Live Node
+                      {prtgMapUrl ? 'PRTG // Enlace configurado' : 'PRTG // Enlace no configurado'}
                     </span>
                   </div>
                   <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-white tracking-wide">
-                    Mapa de monitoreo en vivo — PRTG
+                    {prtgMapUrl ? 'Mapa de monitoreo PRTG' : 'Acceso a monitoreo PRTG'}
                   </h2>
                   <p className="text-gray-300 text-base sm:text-lg mt-2 max-w-2xl font-sans leading-relaxed">
-                    Visualiza el estado actual de nuestra infraestructura en el mapa de PRTG Network Monitor.
+                    {prtgMapUrl ? 'Abre el mapa conectado a PRTG Network Monitor.' : 'El enlace al servidor PRTG todavía no está configurado. Puedes consultar el esquema de referencia.'}
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3">
-                  <a
-                    href={prtgMapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary inline-flex items-center gap-3 text-base px-7 py-3.5 shadow-hard-orange hover:scale-105 transition-transform shrink-0"
-                  >
-                    <span>Abrir mapa de monitoreo</span>
-                    <ExternalLink size={18} />
-                  </a>
+                  {prtgMapUrl ? (
+                    <a href={prtgMapUrl} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center gap-3 text-base px-7 py-3.5 shadow-hard-orange hover:scale-105 transition-transform shrink-0">
+                      <span>Abrir mapa de monitoreo</span><ExternalLink size={18} />
+                    </a>
+                  ) : (
+                    <button type="button" disabled aria-disabled="true" className="btn-primary inline-flex cursor-not-allowed items-center gap-3 px-7 py-3.5 text-base opacity-50" title="Configura VITE_PRTG_MAP_URL para habilitar el enlace">
+                      <span>Mapa en vivo no configurado</span><ExternalLink size={18} />
+                    </button>
+                  )}
 
                   {/* Selector de Vista: Iframe o Captura / Esquema */}
                   <div className="flex items-center gap-2 bg-[#1c1c1c] p-1 rounded-lg border border-neutral-700 text-xs font-mono">
                     <button
                       onClick={() => setActiveViewMode('iframe')}
-                      className={`px-3 py-1.5 rounded transition-colors ${
+                      disabled={!prtgMapUrl}
+                      className={`px-3 py-1.5 rounded transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                         activeViewMode === 'iframe'
                           ? 'bg-primary text-white font-bold'
                           : 'text-gray-400 hover:text-white'
@@ -108,17 +109,17 @@ export default function Monitoreo() {
                 </div>
               </div>
 
-              {/* Nota visible obligatoria */}
+              {/* Estado del enlace de monitoreo */}
               <div className="flex items-start gap-3 bg-primary/10 border-l-4 border-primary p-4 rounded-r-lg">
                 <AlertTriangle size={20} className="text-primary shrink-0 mt-0.5" />
                 <p className="text-xs sm:text-sm text-gray-300 font-sans leading-relaxed">
-                  <strong className="text-white">Nota de conectividad:</strong> Este mapa está alojado en el servidor local del equipo (<code>laptop-7td9v3rm</code>). Solo es accesible desde la misma red donde corre PRTG.
+                  <strong className="text-white">Estado de conexión:</strong> {prtgMapUrl ? 'El destino PRTG se configura mediante VITE_PRTG_MAP_URL.' : 'El destino PRTG no está configurado. El esquema de abajo es referencial y no muestra telemetría en vivo.'}
                 </p>
               </div>
 
               {/* Visor Interactivo Embebido con Estado de Respaldo */}
               <div className="w-full mt-2">
-                {activeViewMode === 'iframe' ? (
+                {activeViewMode === 'iframe' && prtgMapUrl ? (
                   <div className="relative w-full h-[600px] rounded-xl border-2 border-primary/60 overflow-hidden bg-[#0a0a0a] shadow-inner">
                     {!iframeError ? (
                       <iframe
@@ -189,7 +190,7 @@ export default function Monitoreo() {
                         </div>
                         <div>
                           <h4 className="font-display text-lg text-white">
-                            Captura del mapa PRTG Network Monitor
+                            Esquema de referencia PRTG Network Monitor
                           </h4>
                           <span className="text-xs font-mono text-gray-400">
                             ID Mapa: 2001 &bull; Tiradores Healthcare Topology
@@ -197,7 +198,7 @@ export default function Monitoreo() {
                         </div>
                       </div>
                       <span className="px-3 py-1 rounded bg-neutral-800 text-primary font-mono text-xs border border-primary/30">
-                        REFERENCIA OFICIAL
+                        ESQUEMA REFERENCIAL
                       </span>
                     </div>
 
@@ -206,62 +207,46 @@ export default function Monitoreo() {
                       {/* Nodo 1: Gateway & Core */}
                       <div className="bg-[#141414] border border-emerald-500/40 p-5 rounded-xl flex flex-col justify-between">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="font-mono text-xs text-emerald-400 font-bold flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> UP / ACTIVO
+                          <span className="font-mono text-xs text-stone-300 font-bold flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-stone-400" /> NODO DE REFERENCIA
                           </span>
-                          <span className="text-[10px] font-mono text-gray-400">PING: 0.8ms</span>
+                          <span className="text-[10px] font-mono text-gray-400">MÉTRICAS NO DISPONIBLES</span>
                         </div>
-                        <h5 className="font-display text-xl text-white mb-1">laptop-7td9v3rm</h5>
-                        <p className="text-xs text-gray-400 mb-4">Core Probe Server & Servicio PRTG 24/7</p>
-                        <div className="bg-neutral-900 p-2.5 rounded text-[11px] font-mono text-gray-300 space-y-1">
-                          <div>CPU Core: 14% | RAM: 3.8 / 16 GB</div>
-                          <div>Disco C:\ 142 GB libres</div>
-                        </div>
+                        <h5 className="font-display text-xl text-white mb-1">Servidor central</h5>
+                        <p className="text-xs text-gray-400 mb-4">Nodo central de la arquitectura de referencia.</p>
+                        <div className="bg-neutral-900 p-2.5 rounded text-[11px] font-mono text-gray-300">Las métricas aparecerán al conectar una instancia PRTG.</div>
                       </div>
 
                       {/* Nodo 2: Servidor Clínico & BD */}
                       <div className="bg-[#141414] border border-emerald-500/40 p-5 rounded-xl flex flex-col justify-between">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="font-mono text-xs text-emerald-400 font-bold flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> UP / ACTIVO
+                          <span className="font-mono text-xs text-stone-300 font-bold flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-stone-400" /> NODO DE REFERENCIA
                           </span>
-                          <span className="text-[10px] font-mono text-gray-400">HTTP 200 OK</span>
+                          <span className="text-[10px] font-mono text-gray-400">ESTADO NO DISPONIBLE</span>
                         </div>
                         <h5 className="font-display text-xl text-white mb-1">Servidor Base de Datos</h5>
                         <p className="text-xs text-gray-400 mb-4">Historias Clínicas IA MediTech</p>
-                        <div className="bg-neutral-900 p-2.5 rounded text-[11px] font-mono text-gray-300 space-y-1">
-                          <div>PostgreSQL: Puerto 5432 Conectado</div>
-                          <div>Tiempo Respuesta: 18ms</div>
-                        </div>
+                        <div className="bg-neutral-900 p-2.5 rounded text-[11px] font-mono text-gray-300">El estado del servicio requiere conexión con PRTG.</div>
                       </div>
 
                       {/* Nodo 3: Sensores IoT y Red Hospitalaria */}
                       <div className="bg-[#141414] border border-amber-500/40 p-5 rounded-xl flex flex-col justify-between">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="font-mono text-xs text-amber-400 font-bold flex items-center gap-1.5">
-                            <span className="w-2 h-2 rounded-full bg-amber-400" /> WARNING UMBRAL
+                          <span className="font-mono text-xs text-stone-300 font-bold flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-stone-400" /> NODO DE REFERENCIA
                           </span>
-                          <span className="text-[10px] font-mono text-gray-400">SNMP 92%</span>
+                          <span className="text-[10px] font-mono text-gray-400">MÉTRICAS NO DISPONIBLES</span>
                         </div>
                         <h5 className="font-display text-xl text-white mb-1">Switch Rack Quirúrgico</h5>
                         <p className="text-xs text-gray-400 mb-4">Dispositivos Médicos Conectados</p>
-                        <div className="bg-neutral-900 p-2.5 rounded text-[11px] font-mono text-gray-300 space-y-1">
-                          <div>Tráfico enlace: 88 Mbps (Cerca del umbral)</div>
-                          <div>Ventilador: Normal (28°C)</div>
-                        </div>
+                        <div className="bg-neutral-900 p-2.5 rounded text-[11px] font-mono text-gray-300">Los umbrales dependen de la configuración de monitoreo.</div>
                       </div>
                     </div>
 
                     <div className="mt-6 pt-4 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-mono">
-                      <span>Placeholder oficial del mapa: Captura de pantalla representativa con topología de red.</span>
-                      <a
-                        href={prtgMapUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:underline inline-flex items-center gap-1 font-bold"
-                      >
-                        Abrir mapa original en PRTG <ArrowRight size={14} />
-                      </a>
+                      <span>Esquema referencial; no está conectado a telemetría en vivo.</span>
+                      {prtgMapUrl && <a href={prtgMapUrl} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1 font-bold">Abrir mapa original en PRTG <ArrowRight size={14} /></a>}
                     </div>
                   </div>
                 )}

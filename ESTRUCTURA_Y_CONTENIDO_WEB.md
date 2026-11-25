@@ -2,7 +2,7 @@
 
 > **Documento Oficial de Arquitectura de Información, Contenido y Procesos**  
 > **Proyecto:** IA MediTech — Hardware e Infraestructura Tecnológica  
-> **Equipo:** Tiradores (Pisadores)  
+> **Equipo:** Tiradores
 > **Ubicación:** Raíz del Proyecto (`/ESTRUCTURA_Y_CONTENIDO_WEB.md`)  
 > **Última actualización:** 2026
 
@@ -31,10 +31,10 @@
 El presente sitio web constituye el portal centralizado de documentación, gobernanza, estructura organizativa y modelado de procesos del **Equipo de Hardware e Infraestructura de Tiradores**, que opera dentro de la empresa **IATECH Co.** para el soporte del proyecto hospitalario **IA MediTech** en Bolivia.
 
 ### Stack Tecnológico del Sitio Web:
-- **Framework Front-End:** React 18+ (SPA - Single Page Application)
-- **Enrutamiento:** React Router DOM v6 con navegación sin recarga y persistencia de scroll.
-- **Herramienta de Construcción:** Vite + TypeScript.
-- **Estilos y Diseño:** Tailwind CSS con tipografías *Oswald* (títulos/display) e *Inter* (cuerpo/sans), con paleta de color institucional:
+- **Framework Front-End:** React 19 (SPA - Single Page Application).
+- **Enrutamiento:** React Router DOM 7; la navegación a una ruta comienza desde arriba, los enlaces con ancla llevan a su destino y las rutas desconocidas muestran una página 404.
+- **Herramienta de Construcción:** Vite 6 + TypeScript.
+- **Estilos y Diseño:** Tailwind CSS 4 con tipografías *Oswald* (títulos/display) e *Inter* (cuerpo/sans), con paleta de color institucional y acentos editoriales azul y amarillo:
   - Primario Terracota/Naranja: `#C1522A`
   - Superficie Oscura / Grafito: `#1F1E1D` / `#161514`
   - Fondo Crema / Hueso: `#F5F2EB` / `#FAF8F5`
@@ -47,27 +47,44 @@ El presente sitio web constituye el portal centralizado de documentación, gober
 
 El componente principal de diseño (`src/components/Layout.tsx`) envuelve todas las páginas asegurando coherencia visual, navegación fluida y pie de página en toda la aplicación.
 
-### Menú de Navegación (Header)
-El encabezado cuenta con un logotipo interactivo con ícono de procesador (`Cpu`) que enlaza al Inicio, navegación para pantallas de escritorio con indicador de pestaña activa subrayada en terracota, y menú desplegable para dispositivos móviles (`hamburger menu`).
+### Navegación lateral y rutas
+El componente `src/components/Sidebar.tsx` muestra el wordmark IATECH Co., un buscador, grupos de navegación y el estado activo. En móvil, la navegación se abre en un drawer. El footer reutiliza los mismos enlaces. La aplicación contiene 21 rutas:
 
-| Etiqueta en Menú | Ruta URL | Componente de Página | Descripción Rápida |
-| :--- | :--- | :--- | :--- |
-| **Inicio** | `/` | `Home.tsx` | Portada, visión general, objetivos, accesos rápidos e inventario. |
-| **Gestión de Tecnología** | `/gestion-tecnologia` | `GestionTecnologia.tsx` | Estrategia digital, 4 pilares, ciclo de vida y KPIs de TI. |
-| **Ciencia, Tecnología e Innovación** | `/ciencia-tecnologia-innovacion` | `CienciaTecnologia.tsx` | Triángulo del progreso, tendencias globales y aplicación en salud. |
-| **Misión y Visión** | `/mision-vision` | `MisionVision.tsx` | Propósito institucional, declaraciones oficiales, valores y horizontes. |
-| **Organigrama** | `/organigrama` | `Organigrama.tsx` | Jerarquía, fichas por rol, matriz RACI y acuerdos SLA. |
-| **MBTI** | `/mbti` | `MBTI.tsx` | Psicología del equipo, análisis por perfil y sinergia colaborativa. |
-| **Scrum** | `/scrum` | `Scrum.tsx` | Metodología ágil, artefactos, ceremonias, Kanban y roles UCB. |
-| **IDEF0** | `/idef0` | `IDEF0.tsx` | Modelo funcional FIPS PUB 183 a nivel A-0 y análisis ICOM. |
-| **BPMN** | `/bpmn` | `BPMN.tsx` | Flujo de negocio OMG 2.0 para gestión de solicitudes en 6 carriles. |
+| Etiqueta en menú | Ruta URL | Grupo |
+| :--- | :--- | :--- |
+| Inicio | `/` | General |
+| Gestión de Tecnología | `/gestion-tecnologia` | Fundamentos |
+| Ciencia, Tecnología e Innovación | `/ciencia-tecnologia-innovacion` | Fundamentos |
+| Misión y Visión | `/mision-vision` | Fundamentos |
+| Organización | `/organigrama` | Equipo |
+| Descripción de Posiciones | `/posiciones` | Equipo |
+| MBTI del Equipo | `/mbti` | Equipo |
+| Scrum del Equipo | `/scrum` | Equipo |
+| Objetivos y Asignación | `/objetivos` | Equipo |
+| Contactos | `/contacto` | Equipo |
+| Modelado IDEF0 | `/idef0` | Procesos y datos |
+| BPMN del Equipo | `/bpmn` | Procesos y datos |
+| Inventarios | `/inventarios` | Procesos y datos |
+| Datos y Tableau | `/tableau` | Procesos y datos |
+| Patrones con Weka | `/weka` | Procesos y datos |
+| Monitoreo con PRTG | `/monitoreo` | Procesos y datos |
+| Presupuesto | `/presupuesto` | Procesos y datos |
+| Soporte Externo | `/servicios-externos` | Gestión y cierre |
+| Plan de Contingencia | `/contingencia` | Gestión y cierre |
+| Conclusiones | `/conclusiones` | Gestión y cierre |
+| Recomendaciones | `/recomendaciones` | Gestión y cierre |
 
 ### Pie de Página (Footer)
 - **Marca:** Tiradores Hardware.
 - **Lema Institucional:** *"Construimos la base física que sostiene la salud digital. Equipo de Hardware e Infraestructura, IA MediTech."*
-- **Enlaces de Navegación:** Acceso directo a las 9 pestañas del sitio.
+- **Enlaces de Navegación:** Acceso directo a las 21 rutas del sitio.
 - **Créditos:** © Año actual Tiradores Hardware. Todos los derechos reservados.
-- **Enlaces de Redes:** LinkedIn, Twitter, GitHub.
+- **Redes sociales:** No se muestran enlaces externos mientras no haya URLs oficiales configuradas.
+
+### Recursos públicos y canales
+- Las fotografías de equipo se guardan en `public/team/` y Vite las copia a `dist/team/` durante el build.
+- Los datos de contacto individuales se publican solo cuando fueron proporcionados. Las acciones de correo y WhatsApp sin datos están desactivadas.
+- El mapa PRTG se configura mediante la variable de entorno `VITE_PRTG_MAP_URL`. Sin ella, el sitio presenta únicamente un esquema referencial sin telemetría en vivo.
 
 ---
 

@@ -6,7 +6,7 @@ import { ContentPage, ContentSection, InfoPanel } from '../components/ContentBlo
 import VideoEmbed from '../components/VideoEmbed';
 import { inventoryAreas, inventoryData, inventoryStates, inventoryTypes, INVENTORY_LABEL } from '../data/inventarioData';
 
-const CHART_COLORS = ['#C1522A', '#1F1E1D', '#B6F23A', '#3B6BFF', '#00A6A6', '#E8A72D', '#7C6BFF', '#FF3DCB'];
+const CHART_COLORS = ['#1644E8', '#FF4B18', '#111111', '#E9F23A', '#4D6FF0', '#FF7954', '#4D4B47', '#A8B31C'];
 const concepts = [
   ['Conexión a datos', 'Vincula archivos o fuentes de datos para iniciar el análisis.'], ['Dimensiones y medidas', 'Las dimensiones describen categorías; las medidas contienen valores cuantificables.'], ['Hojas', 'Espacios individuales para construir una visualización.'], ['Dashboards', 'Combinan hojas y controles en una vista interactiva.'], ['Filtros', 'Permiten explorar subconjuntos con criterios claros.'], ['Campos calculados', 'Derivan métricas a partir de expresiones.'], ['Historias (stories)', 'Organizan vistas en una secuencia narrativa.'],
 ];
@@ -24,7 +24,7 @@ function summarize(rows: Asset[], key: keyof Asset): ChartDatum[] {
 }
 
 function PreviewChart({ title, data, pie = false }: { title: string; data: ChartDatum[]; pie?: boolean }) {
-  return <InfoPanel title={title}><div className="h-64">{data.length ? <ResponsiveContainer width="100%" height="100%">{pie ? <PieChart><Pie data={data} dataKey="value" nameKey="name" outerRadius={78} label>{data.map((item, index) => <Cell key={item.name} fill={CHART_COLORS[index % CHART_COLORS.length]} />)}</Pie><Tooltip /></PieChart> : <BarChart data={data} margin={{ top: 8, right: 8, left: -18, bottom: 35 }}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="name" angle={-25} textAnchor="end" tick={{ fontSize: 10 }} /><YAxis allowDecimals={false} tick={{ fontSize: 10 }} /><Tooltip /><Bar dataKey="value" fill="#C1522A" radius={[5, 5, 0, 0]} /></BarChart>}</ResponsiveContainer> : <div className="flex h-full items-center justify-center text-sm text-foreground-muted">No hay activos con estos filtros.</div>}</div></InfoPanel>;
+  return <InfoPanel title={title}><div className="h-64">{data.length ? <ResponsiveContainer width="100%" height="100%">{pie ? <PieChart><Pie data={data} dataKey="value" nameKey="name" outerRadius={78} label>{data.map((item, index) => <Cell key={item.name} fill={CHART_COLORS[index % CHART_COLORS.length]} />)}</Pie><Tooltip /></PieChart> : <BarChart data={data} margin={{ top: 8, right: 8, left: -18, bottom: 35 }}><CartesianGrid strokeDasharray="3 3" /><XAxis dataKey="name" angle={-25} textAnchor="end" tick={{ fontSize: 10 }} /><YAxis allowDecimals={false} tick={{ fontSize: 10 }} /><Tooltip /><Bar dataKey="value" fill="#1644E8" radius={[0, 0, 0, 0]} /></BarChart>}</ResponsiveContainer> : <div className="flex h-full items-center justify-center text-sm text-foreground-muted">No hay activos con estos filtros.</div>}</div></InfoPanel>;
 }
 
 export default function Tableau() {
@@ -42,7 +42,7 @@ export default function Tableau() {
   const byYear = summarize(filteredAssets, 'anio').sort((a, b) => Number(a.name) - Number(b.name));
   const hasFilters = typeFilter !== 'Todos' || stateFilter !== 'Todos' || areaFilter !== 'Todas';
 
-  return <ContentPage title="Datos y Tableau · Visualización de Indicadores" subtitle="De los registros operativos a indicadores que ayudan a decidir." category="Procesos y datos · analítica">
+  return <ContentPage title="Datos y Tableau · Visualización de Indicadores" subtitle="De los registros operativos a indicadores que ayudan a decidir." category="Procesos y datos · analítica" className="tableau-page">
     <ContentSection title="¿Qué es Tableau?" eyebrow="Plataforma de análisis visual">
       <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]"><InfoPanel><p className="leading-relaxed">Tableau convierte datos en visualizaciones y dashboards interactivos. El equipo puede usarlo para explorar tendencias de activos, incidentes y costos; las conclusiones dependen de la calidad y actualización de los datos de origen.</p><a className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline" href="https://www.tableau.com/es-es/learn" target="_blank" rel="noreferrer">Formación oficial de Tableau <ArrowUpRight size={15} /></a></InfoPanel><InfoPanel title="Productos"><ul className="space-y-2 text-sm"><li><b>Desktop</b> · creación de análisis.</li><li><b>Public</b> · publicación gratuita de visualizaciones públicas.</li><li><b>Cloud / Server</b> · publicación y colaboración organizacional.</li><li><b>Prep</b> · preparación y combinación de datos.</li></ul></InfoPanel></div>
     </ContentSection>

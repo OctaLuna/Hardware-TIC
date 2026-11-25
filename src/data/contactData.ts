@@ -3,20 +3,22 @@ export interface TeamMemberContact {
   name: string;
   scrumRole: string;
   area: string;
-  email: string;
-  phone: string;
-  whatsapp: string;
+  email?: string;
+  phone?: string;
+  whatsapp?: string;
   scrumAnchor: string;
   organigramaAnchor: string;
   initials: string;
   photoUrl?: string;
+  photoFit?: 'cover' | 'contain';
+  photoPosition?: string;
   bio?: string;
 }
 
 export interface GeneralContactInfo {
   teamName: string;
   company: string;
-  email: string;
+  email?: string;
   university: string;
   location: string;
   schedule: string;
@@ -33,12 +35,13 @@ export const teamMembersContact: TeamMemberContact[] = [
     name: 'Octavio Luna Vargas',
     scrumRole: 'Líder de Hardware / Scrum Master',
     area: 'Líder de Hardware e Infraestructura',
-    email: 'correo@pendiente.com',
-    phone: '+591 00000000',
-    whatsapp: '59100000000',
+    email: 'marco.luna.v@ucb.edu.bo',
+    phone: '+591 63248287',
+    whatsapp: '59163248287',
     scrumAnchor: 'octavio-luna',
     organigramaAnchor: 'lider-hardware',
     initials: 'OL',
+    photoUrl: '/team/octavio-luna.jpeg',
     bio: 'Articula la estrategia de hardware y facilita la resolución de bloqueos técnicos y metodológicos en el equipo.'
   },
   {
@@ -46,9 +49,8 @@ export const teamMembersContact: TeamMemberContact[] = [
     name: 'Leandro Colque',
     scrumRole: 'Product Owner',
     area: 'Dirección de Tecnología y Presupuesto',
-    email: 'correo@pendiente.com',
-    phone: '+591 00000000',
-    whatsapp: '59100000000',
+    photoUrl: '/team/leandro-colque.jpeg',
+    photoPosition: '50% 39%',
     scrumAnchor: 'leandro-colque',
     organigramaAnchor: 'direccion-tecnologia',
     initials: 'LC',
@@ -59,9 +61,7 @@ export const teamMembersContact: TeamMemberContact[] = [
     name: 'Einar Andrés Guillén Boero',
     scrumRole: 'Developer',
     area: 'Gestión de Infraestructura Global',
-    email: 'correo@pendiente.com',
-    phone: '+591 00000000',
-    whatsapp: '59100000000',
+    photoUrl: '/team/einar-guillen.jpeg',
     scrumAnchor: 'einar-guillen',
     organigramaAnchor: 'gestion-infraestructura',
     initials: 'EG',
@@ -72,12 +72,13 @@ export const teamMembersContact: TeamMemberContact[] = [
     name: 'Huáscar Camilo Durán Avendaño',
     scrumRole: 'Developer',
     area: 'Aseguramiento de Calidad y Recursos',
-    email: 'correo@pendiente.com',
-    phone: '+591 00000000',
-    whatsapp: '59100000000',
+    email: 'avendur360@gmail.com',
+    phone: '+591 78817332',
+    whatsapp: '59178817332',
     scrumAnchor: 'huascar-duran',
     organigramaAnchor: 'aseguramiento-calidad',
     initials: 'HD',
+    photoUrl: '/team/huascar-duran.jpeg',
     bio: 'Garantiza el cumplimiento de normativas de salud digital, certificaciones de calidad y gestión de recursos.'
   },
   {
@@ -85,9 +86,8 @@ export const teamMembersContact: TeamMemberContact[] = [
     name: 'Leonardo Ibarra López',
     scrumRole: 'Developer',
     area: 'Operaciones de Soporte y Entorno de Trabajo',
-    email: 'correo@pendiente.com',
-    phone: '+591 00000000',
-    whatsapp: '59100000000',
+    photoUrl: '/team/leonardo-ibarra.jpeg',
+    photoFit: 'contain',
     scrumAnchor: 'leonardo-ibarra',
     organigramaAnchor: 'operaciones-soporte',
     initials: 'LI',
@@ -98,9 +98,8 @@ export const teamMembersContact: TeamMemberContact[] = [
 export const generalContactInfo: GeneralContactInfo = {
   teamName: 'Equipo Tiradores — Hardware e Infraestructura',
   company: 'IATECH Co. / IA MediTech',
-  email: 'contacto.tiradores@pendiente.com',
   university: 'Universidad Católica Boliviana "San Pablo"',
   location: 'La Paz, Bolivia',
   schedule: 'Lunes a Viernes, 08:30 – 18:00 (Hora Bolivia)',
-  description: 'Canal oficial de comunicación para requerimientos técnicos, soporte de servidores, auditorías de infraestructura y proyectos de salud digital.'
+  description: 'Información del equipo y canales personales publicados para consultas sobre infraestructura y proyectos de salud digital.'
 };
